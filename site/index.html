@@ -207,29 +207,29 @@
       <rect x="515" y="195" width="14" height="28" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
       <rect x="532" y="188" width="14" height="35" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
       <rect x="549" y="200" width="14" height="23" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
-      <!-- Palms: large fronds (each .palm-frond sways via GSAP; data-oy = pivot Y in local coords) -->
+      <!-- Palms (static) -->
       <g id="palmL" transform="translate(248,360)">
         <g transform="scale(1.48)">
           <path d="M0,0 L0,-138" stroke="#14532d" stroke-width="7" stroke-linecap="round" />
-          <g class="palm-frond palm-frond--l" data-oy="-130">
+          <g>
             <path d="M0,-130 Q-92,-218 -158,-186" stroke="#14532d" stroke-width="4.5" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-122">
+          <g>
             <path d="M0,-122 Q-78,-205 -132,-178" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-112">
+          <g>
             <path d="M0,-112 Q-58,-182 -102,-158" stroke="#16a34a" stroke-width="3.6" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-102">
+          <g>
             <path d="M0,-102 Q-42,-162 -78,-142" stroke="#22c55e" stroke-width="3.3" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-96">
+          <g>
             <path d="M0,-96 Q68,-188 118,-162" stroke="#34d399" stroke-width="3.2" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-88">
+          <g>
             <path d="M0,-88 Q52,-168 92,-148" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--l" data-oy="-82">
+          <g>
             <path d="M0,-82 Q-48,-148 -82,-128" stroke="#22c55e" stroke-width="2.8" fill="none" stroke-linecap="round" />
           </g>
         </g>
@@ -237,25 +237,25 @@
       <g id="palmR" transform="translate(952,360)">
         <g transform="scale(1.48)">
           <path d="M0,0 L0,-138" stroke="#14532d" stroke-width="7" stroke-linecap="round" />
-          <g class="palm-frond palm-frond--r" data-oy="-130">
+          <g>
             <path d="M0,-130 Q92,-218 158,-186" stroke="#14532d" stroke-width="4.5" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-122">
+          <g>
             <path d="M0,-122 Q78,-205 132,-178" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-112">
+          <g>
             <path d="M0,-112 Q58,-182 102,-158" stroke="#16a34a" stroke-width="3.6" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-102">
+          <g>
             <path d="M0,-102 Q42,-162 78,-142" stroke="#22c55e" stroke-width="3.3" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-96">
+          <g>
             <path d="M0,-96 Q-68,-188 -118,-162" stroke="#34d399" stroke-width="3.2" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-88">
+          <g>
             <path d="M0,-88 Q-52,-168 -92,-148" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round" />
           </g>
-          <g class="palm-frond palm-frond--r" data-oy="-82">
+          <g>
             <path d="M0,-82 Q48,-148 82,-128" stroke="#22c55e" stroke-width="2.8" fill="none" stroke-linecap="round" />
           </g>
         </g>
@@ -355,11 +355,11 @@
             <div class="w-40 h-40 rounded-full border border-lola/25 animate-pulse"></div>
           </div>
           <img
-            class="logo-animate relative z-10 w-28 h-28 md:w-32 md:h-32 rounded-[22%] shadow-[0_0_30px_rgba(0,0,0,0.6)] ring-2 ring-lola/40 object-contain bg-void/40 p-1"
-            src="images/table-service-menu-ai-icon.svg"
-            alt="Table Service Menu AI app icon"
-            width="128"
-            height="128"
+            class="logo-animate relative z-10 w-32 h-32 md:w-36 md:h-36 max-w-[200px] rounded-[22%] shadow-[0_0_30px_rgba(0,0,0,0.55)] ring-2 ring-white/25 object-contain bg-white p-2"
+            src="images/table-service-logo.png"
+            alt="Table Service — blue script logo"
+            width="180"
+            height="180"
             decoding="async"
           />
         </div>
@@ -485,44 +485,6 @@
         card.addEventListener("mouseleave", function () {
           gsap.to(target, { scale: 1, duration: 0.5, ease: "power3.out" });
         });
-      });
-
-      // Hero palms: large fronds sway (staggered sine, mirrored L/R)
-      function palmPivotOy(el) {
-        var v = el.getAttribute("data-oy");
-        return v ? parseFloat(v, 10) : -100;
-      }
-      document.querySelectorAll("#palmL .palm-frond").forEach(function (el, i) {
-        gsap.set(el, { transformOrigin: "0px " + palmPivotOy(el) + "px", force3D: true });
-        var amp = 5.5 + (i % 3) * 1.6;
-        gsap.fromTo(
-          el,
-          { rotation: -amp * 0.5 },
-          {
-            rotation: amp * 0.5,
-            duration: 2.35 + i * 0.1,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: i * 0.08,
-          }
-        );
-      });
-      document.querySelectorAll("#palmR .palm-frond").forEach(function (el, i) {
-        gsap.set(el, { transformOrigin: "0px " + palmPivotOy(el) + "px", force3D: true });
-        var amp = 5.5 + (i % 3) * 1.6;
-        gsap.fromTo(
-          el,
-          { rotation: amp * 0.5 },
-          {
-            rotation: -amp * 0.5,
-            duration: 2.45 + i * 0.08,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: i * 0.07 + 0.18,
-          }
-        );
       });
     })();
   </script>
