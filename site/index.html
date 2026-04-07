@@ -110,24 +110,6 @@
       height: 100%;
       display: block;
     }
-    /* Above cards (z-20) and above grain (z-40) so the figure stays visible. */
-    .tube-overlay {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: min(58vh, 500px);
-      z-index: 45;
-      pointer-events: none;
-      overflow: visible;
-    }
-    .tube-overlay svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.55));
-    }
     .speed-line {
       transform-origin: left center;
     }
@@ -399,71 +381,6 @@
     © Fantasy Island LLC
   </footer>
 
-  <!-- Tube guy: after content in DOM. GSAP must not animate groups that have static SVG translate() — it replaces the whole transform attribute. -->
-  <div class="tube-overlay" aria-hidden="true">
-    <svg viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
-      <g id="tubeGuy" transform="translate(600,200) scale(1.25)">
-        <ellipse cx="0" cy="4" rx="20" ry="5" fill="#000" opacity="0.25" />
-        <rect x="-20" y="-2" width="40" height="14" rx="5" fill="#022c22" stroke="rgba(45,212,191,0.55)" stroke-width="1" />
-        <rect x="-16" y="0" width="32" height="8" rx="2" fill="#064e3b" opacity="0.9" />
-        <g transform="translate(0,8)">
-          <g id="tubeSway">
-            <path
-              fill="#FF4D6D"
-              stroke="#fda4af"
-              stroke-width="1.5"
-              d="M -18 0 Q -22 -28 -20 -52 Q -18 -72 -8 -82 Q 0 -86 8 -82 Q 18 -72 20 -52 Q 22 -28 18 0 Q 10 4 0 4 Q -10 4 -18 0 Z"
-            />
-            <ellipse cx="0" cy="-88" rx="15" ry="14" fill="#FF4D6D" stroke="#9f1239" stroke-width="1" />
-            <ellipse cx="-4" cy="-90" rx="3" ry="4" fill="#1e293b" opacity="0.65" />
-            <ellipse cx="5" cy="-90" rx="3" ry="4" fill="#1e293b" opacity="0.65" />
-            <path d="M -6 -78 Q 0 -72 6 -78" fill="none" stroke="#9f1239" stroke-width="1.5" stroke-linecap="round" />
-            <g transform="translate(-16,-38)">
-              <g id="tubeArmL">
-                <path
-                  d="M 0 0 Q -18 -22 -32 -48 Q -42 -68 -28 -88"
-                  fill="none"
-                  stroke="#FF4D6D"
-                  stroke-width="11"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M 0 0 Q -18 -22 -32 -48 Q -42 -68 -28 -88"
-                  fill="none"
-                  stroke="#fda4af"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  opacity="0.5"
-                />
-              </g>
-            </g>
-            <g transform="translate(16,-38)">
-              <g id="tubeArmR">
-                <path
-                  d="M 0 0 Q 18 -22 32 -48 Q 42 -68 28 -88"
-                  fill="none"
-                  stroke="#FF4D6D"
-                  stroke-width="11"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M 0 0 Q 18 -22 32 -48 Q 42 -68 28 -88"
-                  fill="none"
-                  stroke="#fda4af"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  opacity="0.5"
-                />
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script>
     (function () {
@@ -528,36 +445,6 @@
         card.addEventListener("mouseleave", function () {
           gsap.to(target, { scale: 1, duration: 0.5, ease: "power3.out" });
         });
-      });
-
-      // Tube: rotate only inner <g> ids — parents keep static translate() (GSAP replaces whole transform on target).
-      gsap.set("#tubeSway", { transformOrigin: "0px 4px" });
-      gsap.set("#tubeArmL", { transformOrigin: "0px 0px" });
-      gsap.set("#tubeArmR", { transformOrigin: "0px 0px" });
-
-      gsap.to("#tubeSway", {
-        rotation: 11,
-        duration: 0.52,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-
-      gsap.to("#tubeArmL", {
-        rotation: -52,
-        duration: 0.26,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-
-      gsap.to("#tubeArmR", {
-        rotation: 52,
-        duration: 0.3,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        delay: 0.12,
       });
 
       // Hero palms: large fronds sway (staggered sine, mirrored L/R)
