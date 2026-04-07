@@ -26,4 +26,4 @@ Open http://127.0.0.1:8765/
 
 ## Related
 
-- **Dreamcycle** (app + dreamcycle.app): [pointever/alarm-clock](https://github.com/pointever/alarm-clock)
+- **Dreamcycle** (app + [dreamcycle.app](https://dreamcycle.app/)): [pointever/dreamcycle-alarm-clock](https://github.com/pointever/dreamcycle-alarm-clock)
