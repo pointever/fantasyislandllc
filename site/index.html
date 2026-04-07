@@ -113,6 +113,28 @@
     .speed-line {
       transform-origin: left center;
     }
+    @keyframes fi-marquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+    .fi-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: fi-marquee 38s linear infinite;
+    }
+    .fi-marquee-row--alt .fi-marquee-track {
+      animation-duration: 48s;
+      animation-direction: reverse;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fi-marquee-track {
+        animation: none;
+      }
+    }
   </style>
 </head>
 <body class="bg-void text-bone font-narrow antialiased min-h-screen relative overflow-x-hidden">
@@ -306,12 +328,24 @@
           — <a href="https://colormac.com/" class="text-lagoon/75 hover:text-lagoon underline-offset-2 hover:underline" rel="noopener noreferrer">legal &amp; privacy</a> (colormac.com for now) ·
           <a href="https://dreamcycle.app/support/" class="text-lagoon/70 hover:text-lagoon underline-offset-2 hover:underline" rel="noopener noreferrer">support</a>
         </p>
-        <span
-          class="mt-7 inline-flex items-center justify-center gap-2 border-2 border-bone/25 text-bone/45 px-6 py-3.5 font-semibold uppercase tracking-wider text-sm cursor-default select-none text-center leading-snug"
-          aria-disabled="true"
-        >
-          App Store — coming soon
-        </span>
+        <div class="mt-7 flex justify-center md:justify-start">
+          <span
+            class="inline-block rounded-md bg-bone/95 p-2 opacity-50 pointer-events-none select-none shadow-sm"
+            aria-disabled="true"
+            title="Coming soon on the App Store"
+          >
+            <img
+              src="images/app-store-badge-us-black.svg"
+              alt=""
+              width="120"
+              height="40"
+              class="h-10 md:h-11 w-auto"
+              decoding="async"
+              role="presentation"
+            />
+            <span class="sr-only">Download on the App Store — Dreamcycle coming soon</span>
+          </span>
+        </div>
       </article>
 
       <article class="logo-card group relative bg-ash border-l-4 border-sunset border border-rose-300/20 p-7 md:p-9 flex flex-col overflow-hidden hover:border-gold/50 backdrop-blur-sm transition-colors duration-300 shadow-[0_0_40px_-14px_rgba(251,113,133,0.25)]">
@@ -355,13 +389,19 @@
           <strong class="text-bone/80">Europe</strong> (including countries on Apple’s European storefronts). Apple controls regional listings; they may change without notice.
         </p>
         <a
-          class="mt-5 inline-flex items-center justify-center gap-2 border-2 border-lola text-lola px-6 py-3.5 font-semibold uppercase tracking-wider text-sm hover:bg-lola hover:text-void transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lola focus-visible:ring-offset-2 focus-visible:ring-offset-ash"
+          class="mt-5 inline-block rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-lola focus-visible:ring-offset-2 focus-visible:ring-offset-ash transition-opacity hover:opacity-90"
           href="https://apps.apple.com/nz/app/table-service-menu-ai/id6759931792"
           target="_blank"
           rel="noopener noreferrer"
         >
-          App Store
-          <span aria-hidden="true">→</span>
+          <img
+            src="images/app-store-badge-us-white.svg"
+            alt="Download on the App Store — Table Service Menu AI"
+            width="120"
+            height="40"
+            class="h-10 md:h-11 w-auto"
+            decoding="async"
+          />
         </a>
         <p class="mt-2 text-[0.65rem] text-bone/40">Listing opens in Apple’s New Zealand storefront; App Store may switch to your region if your account is eligible.</p>
       </article>
