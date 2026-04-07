@@ -1,4 +1,5 @@
 # Deploy /site to Cloudflare Pages (project: fantasy-island-llc).
+# Site uses Tailwind (CDN) + Google Fonts: Archivo Narrow, Bebas Neue, Bungee, Rubik Bubbles.
 #
 # Repo secrets (Settings → Secrets and variables → Actions):
 #   CLOUDFLARE_API_TOKEN   — Account → Cloudflare Pages → Edit
