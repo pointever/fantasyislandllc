@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="dc-logo-title">
   <title id="dc-logo-title">Dreamcycle — Jungle Canopy split-flap face</title>
   <defs>
-    <!-- FilmSkin.jungle — backdrop gradient (top → bottom) -->
+    <!-- Jungle Canopy skin — backdrop gradient (top → bottom) -->
     <linearGradient id="jg-bg" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#0d331c"/>
       <stop offset="50%" stop-color="#05140d"/>
