@@ -203,15 +203,58 @@
       <rect x="515" y="195" width="14" height="28" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
       <rect x="532" y="188" width="14" height="35" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
       <rect x="549" y="200" width="14" height="23" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
-      <!-- Palm L (lush fronds) -->
-      <g id="palmL" transform="translate(430,360)">
-        <path d="M0,0 L0,-95" stroke="#14532d" stroke-width="5" stroke-linecap="round" />
-        <path d="M0,-88 Q-45,-130 -70,-118 M0,-82 Q35,-125 58,-108 M0,-75 Q-25,-140 -52,-135 M0,-70 Q40,-138 72,-125" stroke="#22c55e" stroke-width="3.2" fill="none" stroke-linecap="round" />
+      <!-- Palms: large fronds (each .palm-frond sways via GSAP; data-oy = pivot Y in local coords) -->
+      <g id="palmL" transform="translate(248,360)">
+        <g transform="scale(1.48)">
+          <path d="M0,0 L0,-138" stroke="#14532d" stroke-width="7" stroke-linecap="round" />
+          <g class="palm-frond palm-frond--l" data-oy="-130">
+            <path d="M0,-130 Q-92,-218 -158,-186" stroke="#14532d" stroke-width="4.5" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-122">
+            <path d="M0,-122 Q-78,-205 -132,-178" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-112">
+            <path d="M0,-112 Q-58,-182 -102,-158" stroke="#16a34a" stroke-width="3.6" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-102">
+            <path d="M0,-102 Q-42,-162 -78,-142" stroke="#22c55e" stroke-width="3.3" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-96">
+            <path d="M0,-96 Q68,-188 118,-162" stroke="#34d399" stroke-width="3.2" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-88">
+            <path d="M0,-88 Q52,-168 92,-148" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--l" data-oy="-82">
+            <path d="M0,-82 Q-48,-148 -82,-128" stroke="#22c55e" stroke-width="2.8" fill="none" stroke-linecap="round" />
+          </g>
+        </g>
       </g>
-      <!-- Palm R -->
-      <g id="palmR" transform="translate(780,360)">
-        <path d="M0,0 L0,-102" stroke="#14532d" stroke-width="5" stroke-linecap="round" />
-        <path d="M0,-95 Q40,-138 68,-120 M0,-88 Q-38,-128 -62,-112 M0,-78 Q45,-142 75,-128 M0,-72 Q-30,-145 -55,-138" stroke="#4ade80" stroke-width="3.2" fill="none" stroke-linecap="round" />
+      <g id="palmR" transform="translate(952,360)">
+        <g transform="scale(1.48)">
+          <path d="M0,0 L0,-138" stroke="#14532d" stroke-width="7" stroke-linecap="round" />
+          <g class="palm-frond palm-frond--r" data-oy="-130">
+            <path d="M0,-130 Q92,-218 158,-186" stroke="#14532d" stroke-width="4.5" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-122">
+            <path d="M0,-122 Q78,-205 132,-178" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-112">
+            <path d="M0,-112 Q58,-182 102,-158" stroke="#16a34a" stroke-width="3.6" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-102">
+            <path d="M0,-102 Q42,-162 78,-142" stroke="#22c55e" stroke-width="3.3" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-96">
+            <path d="M0,-96 Q-68,-188 -118,-162" stroke="#34d399" stroke-width="3.2" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-88">
+            <path d="M0,-88 Q-52,-168 -92,-148" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="palm-frond palm-frond--r" data-oy="-82">
+            <path d="M0,-82 Q48,-148 82,-128" stroke="#22c55e" stroke-width="2.8" fill="none" stroke-linecap="round" />
+          </g>
+        </g>
       </g>
     </svg>
   </div>
@@ -515,6 +558,44 @@
         repeat: -1,
         ease: "sine.inOut",
         delay: 0.12,
+      });
+
+      // Hero palms: large fronds sway (staggered sine, mirrored L/R)
+      function palmPivotOy(el) {
+        var v = el.getAttribute("data-oy");
+        return v ? parseFloat(v, 10) : -100;
+      }
+      document.querySelectorAll("#palmL .palm-frond").forEach(function (el, i) {
+        gsap.set(el, { transformOrigin: "0px " + palmPivotOy(el) + "px", force3D: true });
+        var amp = 5.5 + (i % 3) * 1.6;
+        gsap.fromTo(
+          el,
+          { rotation: -amp * 0.5 },
+          {
+            rotation: amp * 0.5,
+            duration: 2.35 + i * 0.1,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: i * 0.08,
+          }
+        );
+      });
+      document.querySelectorAll("#palmR .palm-frond").forEach(function (el, i) {
+        gsap.set(el, { transformOrigin: "0px " + palmPivotOy(el) + "px", force3D: true });
+        var amp = 5.5 + (i % 3) * 1.6;
+        gsap.fromTo(
+          el,
+          { rotation: amp * 0.5 },
+          {
+            rotation: -amp * 0.5,
+            duration: 2.45 + i * 0.08,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: i * 0.07 + 0.18,
+          }
+        );
       });
     })();
   </script>
