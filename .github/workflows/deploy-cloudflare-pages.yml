@@ -1,9 +1,13 @@
 # Deploy /site to Cloudflare Pages (project: fantasy-island-llc).
 # Site uses Tailwind (CDN) + self-hosted WOFF2 under site/fonts/ (Latin + Latin-ext subset).
 #
-# Repo secrets (Settings → Secrets and variables → Actions):
-#   CLOUDFLARE_API_TOKEN   — Account → Cloudflare Pages → Edit
-#   CLOUDFLARE_ACCOUNT_ID  — 32-char account id from dashboard
+# REQUIRED — this repo must have its own secrets (they are not inherited from other repos):
+#   https://github.com/pointever/fantasyislandllc/settings/secrets/actions
+#
+#   CLOUDFLARE_API_TOKEN   — API Token with Account → Cloudflare Workers → Edit + Account → Cloudflare Pages → Edit
+#   CLOUDFLARE_ACCOUNT_ID  — 32-char account id (Workers overview sidebar)
+#
+# If deploys fail with "CLOUDFLARE_API_TOKEN", add both secrets here, then re-run the workflow.
 #
 # Create project "fantasy-island-llc" in Cloudflare Pages (or rename below).
 # Attach custom domain fantasyislandllc.com to that project.
@@ -32,6 +36,18 @@ jobs:
           test -f site/index.html || { echo "::error::site/index.html missing"; exit 1; }
           grep -q 'Fantasy Island LLC' site/index.html || { echo "::error::title/brand check failed"; exit 1; }
           echo "OK: site/ present."
+
+      - name: Require Cloudflare secrets (fantasyislandllc repo only)
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
+            echo "::error::Missing CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID on this repository."
+            echo "::error::Open https://github.com/pointever/fantasyislandllc/settings/secrets/actions and add both (same values as dreamcycle repo are fine). Then Actions → re-run failed jobs."
+            exit 1
+          fi
+          echo "OK: Cloudflare secrets present."
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
