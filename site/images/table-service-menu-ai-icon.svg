@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Table Service Menu AI">
+  <defs>
+    <linearGradient id="tsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0a12"/>
+      <stop offset="100%" style="stop-color:#2d0f18"/>
+    </linearGradient>
+    <linearGradient id="tsAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4D6D"/>
+      <stop offset="100%" style="stop-color:#E03150"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#tsBg)"/>
+  <rect x="64" y="120" width="384" height="272" rx="24" fill="none" stroke="url(#tsAccent)" stroke-width="20" opacity="0.9"/>
+  <line x1="120" y1="200" x2="392" y2="200" stroke="url(#tsAccent)" stroke-width="14" stroke-linecap="round" opacity="0.75"/>
+  <line x1="120" y1="268" x2="320" y2="268" stroke="url(#tsAccent)" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+  <line x1="120" y1="336" x2="360" y2="336" stroke="url(#tsAccent)" stroke-width="14" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="380" cy="268" r="36" fill="url(#tsAccent)" opacity="0.95"/>
+  <path d="M368 260 L388 268 L368 276 Z" fill="#1a0a12" opacity="0.85"/>
+</svg>

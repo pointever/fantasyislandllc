@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="dc-logo-title">
+  <title id="dc-logo-title">Dreamcycle — Jungle Canopy split-flap face</title>
+  <defs>
+    <!-- FilmSkin.jungle — backdrop gradient (top → bottom) -->
+    <linearGradient id="jg-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d331c"/>
+      <stop offset="50%" stop-color="#05140d"/>
+      <stop offset="100%" stop-color="#0f2917"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#jg-bg)"/>
+
+  <!-- flapFill rgb(0.028, 0.075, 0.048) → #07130c -->
+  <!-- hingeColor rgb(0.02, 0.06, 0.035) @ 0.76 -->
+  <!-- digitColor rgb(0.88, 0.94, 0.42) → #e0f06b -->
+
+  <rect x="48" y="52" width="416" height="188" rx="17" fill="#07130c" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="48" y="144.5" width="416" height="3" fill="rgb(5,15,9)" fill-opacity="0.76"/>
+  <text
+    x="88"
+    y="146"
+    dominant-baseline="middle"
+    fill="#e0f06b"
+    fill-opacity="0.92"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="44"
+    font-weight="600"
+  >AM</text>
+  <text
+    x="268"
+    y="146"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    fill="#e0f06b"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="172"
+    font-weight="700"
+    letter-spacing="-10"
+  >10</text>
+
+  <rect x="48" y="254" width="416" height="188" rx="17" fill="#07130c" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="48" y="346.5" width="416" height="3" fill="rgb(5,15,9)" fill-opacity="0.76"/>
+  <text
+    x="256"
+    y="348"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    fill="#e0f06b"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="196"
+    font-weight="700"
+    letter-spacing="-12"
+  >10</text>
+</svg>

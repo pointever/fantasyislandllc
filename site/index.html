@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Fantasy Island LLC — California creative company. Dreamcycle (coming soon), Table Service Menu AI (tableservice.app)." />
+  <link rel="canonical" href="https://fantasyislandllc.com/" />
+  <title>Fantasy Island LLC — Apps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Bebas+Neue&family=Bungee&family=Rubik+Bubbles&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lola: "#FF4D6D",
+            lolaDim: "#E03150",
+            void: "#042f2e",
+            ash: "#064e3bd9",
+            bone: "#F0FDFA",
+            gold: "#FBBF24",
+            sunset: "#FB7185",
+            lagoon: "#2DD4BF",
+            jungle: "#059669",
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', "Impact", "sans-serif"],
+            narrow: ['"Archivo Narrow"', "system-ui", "sans-serif"],
+            bubble: ['"Rubik Bubbles"', "system-ui", "sans-serif"],
+            island: ['"Bungee"', "Impact", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.14;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .sky-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 110% 80% at 50% -15%, rgba(251, 113, 133, 0.35) 0%, transparent 42%),
+        radial-gradient(ellipse 70% 55% at 15% 25%, rgba(251, 191, 36, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 45% at 92% 30%, rgba(45, 212, 191, 0.12) 0%, transparent 45%),
+        linear-gradient(
+          185deg,
+          #022c22 0%,
+          #064e3b 18%,
+          #0f766e 38%,
+          #115e59 52%,
+          #134e4a 68%,
+          #042f2e 88%,
+          #021a18 100%
+        );
+    }
+    .stripes {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.045;
+      background: repeating-linear-gradient(
+        -22deg,
+        transparent,
+        transparent 20px,
+        rgba(45, 212, 191, 0.25) 20px,
+        rgba(45, 212, 191, 0.25) 21px
+      );
+      pointer-events: none;
+    }
+    .glow-red {
+      position: fixed;
+      width: 120vmax;
+      height: 120vmax;
+      top: -35%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(251, 191, 36, 0.15) 0%,
+        rgba(251, 113, 133, 0.12) 28%,
+        rgba(45, 212, 191, 0.06) 45%,
+        transparent 58%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+    .island-art {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: min(58vh, 500px);
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.97;
+    }
+    .island-art svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Above cards (z-20) and above grain (z-40) so the figure stays visible. */
+    .tube-overlay {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: min(58vh, 500px);
+      z-index: 45;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .tube-overlay svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.55));
+    }
+    .hero-glow {
+      text-shadow:
+        0 0 50px rgba(45, 212, 191, 0.35),
+        0 0 90px rgba(251, 191, 36, 0.2);
+    }
+    /* Bubble-letter headline: Rubik Bubbles + stroke + soft 3D shadow */
+    .hero-fantasy {
+      font-family: "Rubik Bubbles", system-ui, sans-serif;
+      font-weight: 400;
+      color: #ecfeff;
+      letter-spacing: 0.04em;
+      -webkit-text-stroke: 2px rgba(15, 118, 110, 0.9);
+      paint-order: stroke fill;
+      text-shadow:
+        0 3px 0 rgba(4, 47, 46, 0.55),
+        0 5px 0 rgba(6, 78, 59, 0.35),
+        0 8px 24px rgba(0, 0, 0, 0.45),
+        0 0 36px rgba(45, 212, 191, 0.45),
+        0 0 56px rgba(251, 191, 36, 0.2);
+    }
+    /* Signage / display contrast for second line */
+    .hero-island {
+      font-family: "Bungee", Impact, sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      background: linear-gradient(118deg, #fda4af 0%, #fde68a 38%, #5eead4 72%, #34d399 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 28px rgba(45, 212, 191, 0.35));
+    }
+    .speed-line {
+      transform-origin: left center;
+    }
+  </style>
+</head>
+<body class="bg-void text-bone font-narrow antialiased min-h-screen relative overflow-x-hidden">
+  <div class="sky-mesh" aria-hidden="true"></div>
+  <div class="stripes" aria-hidden="true"></div>
+  <div class="glow-red" id="glow-pulse" aria-hidden="true"></div>
+
+  <div class="island-art" aria-hidden="true">
+    <svg viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="oceanG" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0d9488" />
+          <stop offset="40%" style="stop-color:#0f766e" />
+          <stop offset="100%" style="stop-color:#042f2e" />
+        </linearGradient>
+        <linearGradient id="islandG" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#15803d" />
+          <stop offset="55%" style="stop-color:#166534" />
+          <stop offset="100%" style="stop-color:#052e16" />
+        </linearGradient>
+        <filter id="sunGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+      <!-- Sun (tropical golden hour) -->
+      <circle cx="600" cy="158" r="78" fill="#fb923c" opacity="0.9" filter="url(#sunGlow)" />
+      <circle cx="600" cy="158" r="60" fill="#fbbf24" />
+      <circle cx="600" cy="158" r="40" fill="#fef3c7" opacity="0.9" />
+      <!-- Lightning (rockstar accent) -->
+      <path
+        id="bolt"
+        d="M 720 48 L 688 112 L 712 112 L 692 168 L 738 88 L 708 88 Z"
+        fill="#FBBF24"
+        opacity="0.95"
+      />
+      <!-- Stars -->
+      <g fill="#FBBF24" class="island-star">
+        <path d="M180,52 l4,12 12,4-12,4-4,12-4-12-12-4 12-4z" />
+        <path d="M320,28 l3,9 9,3-9,3-3,9-3-9-9-3 9-3z" opacity="0.85" />
+        <path d="M980,64 l4,12 12,4-12,4-4,12-4-12-12-4 12-4z" opacity="0.75" />
+        <path d="M1050,36 l2.5,8 8,2.5-8,2.5-2.5,8-2.5-8-8-2.5 8-2.5z" />
+        <path d="M90,120 l3,9 9,3-9,3-3,9-3-9-9-3 9-3z" opacity="0.5" />
+      </g>
+      <!-- Ocean + waves -->
+      <path
+        fill="url(#oceanG)"
+        d="M0,188 Q150,178 300,188 T600,182 T900,190 T1200,184 L1200,360 L0,360 Z"
+      />
+      <path
+        fill="none"
+        stroke="rgba(204,251,241,0.35)"
+        stroke-width="2"
+        d="M0,198 Q200,188 400,198 T800,192 T1200,200"
+      />
+      <path
+        fill="none"
+        stroke="rgba(255,255,255,0.12)"
+        stroke-width="1"
+        d="M0,208 Q250,200 500,208 T1000,202 T1200,212"
+      />
+      <!-- Island silhouette -->
+      <path
+        fill="url(#islandG)"
+        stroke="rgba(74,222,128,0.5)"
+        stroke-width="1.5"
+        d="M 380 360 L 400 220 Q 420 160 480 145 Q 520 130 560 150 Q 600 95 640 140 Q 680 125 720 155 Q 780 175 800 230 L 820 360 Z"
+      />
+      <!-- Tiny stage / amp stacks on island -->
+      <rect x="515" y="195" width="14" height="28" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
+      <rect x="532" y="188" width="14" height="35" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
+      <rect x="549" y="200" width="14" height="23" rx="1" fill="#052e16" stroke="rgba(74,222,128,0.35)" stroke-width="0.5" />
+      <!-- Palm L (lush fronds) -->
+      <g id="palmL" transform="translate(430,360)">
+        <path d="M0,0 L0,-95" stroke="#14532d" stroke-width="5" stroke-linecap="round" />
+        <path d="M0,-88 Q-45,-130 -70,-118 M0,-82 Q35,-125 58,-108 M0,-75 Q-25,-140 -52,-135 M0,-70 Q40,-138 72,-125" stroke="#22c55e" stroke-width="3.2" fill="none" stroke-linecap="round" />
+      </g>
+      <!-- Palm R -->
+      <g id="palmR" transform="translate(780,360)">
+        <path d="M0,0 L0,-102" stroke="#14532d" stroke-width="5" stroke-linecap="round" />
+        <path d="M0,-95 Q40,-138 68,-120 M0,-88 Q-38,-128 -62,-112 M0,-78 Q45,-142 75,-128 M0,-72 Q-30,-145 -55,-138" stroke="#4ade80" stroke-width="3.2" fill="none" stroke-linecap="round" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="relative z-20 max-w-5xl mx-auto px-5 pt-12 pb-10 md:pt-20 md:pb-14">
+    <div class="absolute top-8 left-5 w-3/5 max-w-md h-1 bg-lagoon/90 speed-line origin-left" id="speed-1" aria-hidden="true"></div>
+    <div class="absolute top-24 right-8 w-2/5 max-w-xs h-px bg-gold/70 speed-line origin-left" id="speed-2" aria-hidden="true"></div>
+    <div class="absolute top-40 left-1/4 w-1/3 h-px bg-bone/25 speed-line origin-left" id="speed-3" aria-hidden="true"></div>
+
+    <div class="relative inline-block w-full text-center md:text-left md:pl-2">
+      <p class="hero-chunk text-lagoon font-display text-lg md:text-xl tracking-[0.35em] mb-2 opacity-0">LLC</p>
+      <h1 class="hero-title text-[clamp(2.85rem,12vw,6.5rem)] md:text-[clamp(3.25rem,13vw,7.25rem)] leading-[1.02] md:leading-[0.98]">
+        <span class="block hero-line overflow-hidden pb-1">
+          <span class="inline-block translate-y-full opacity-0 hero-fantasy" data-line="1">Fantasy</span>
+        </span>
+        <span class="block hero-line overflow-hidden -mt-1 md:-mt-2">
+          <span class="inline-block translate-y-full opacity-0 hero-island text-[clamp(3rem,13.5vw,7.5rem)] md:text-[clamp(3.5rem,14vw,8.25rem)] leading-none" data-line="2">Island</span>
+        </span>
+      </h1>
+      <div class="h-1.5 bg-gradient-to-r from-lagoon via-gold to-sunset mt-6 max-w-0 mx-auto md:mx-0" id="title-bar" aria-hidden="true"></div>
+      <p class="hero-tag mt-8 text-lg md:text-xl text-bone/75 font-medium max-w-xl mx-auto md:mx-0 leading-snug opacity-0 translate-y-6">
+        A creative company in California.
+      </p>
+      <p class="hero-tag mt-5 text-sm md:text-base text-bone/50 max-w-xl mx-auto md:mx-0 opacity-0 translate-y-6 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-2">
+        <a href="https://fantasyislandllc.com" class="text-lagoon/90 hover:text-bone underline-offset-4 hover:underline transition-colors" rel="noopener noreferrer">fantasyislandllc.com</a>
+        <span class="text-bone/25 hidden sm:inline" aria-hidden="true">·</span>
+        <span class="text-bone/40 cursor-default select-none" title="Coming soon">dreamcycle.app</span>
+        <span class="text-bone/25 hidden sm:inline" aria-hidden="true">·</span>
+        <a href="https://tableservice.app" class="text-sunset/90 hover:text-bone underline-offset-4 hover:underline transition-colors" rel="noopener noreferrer">tableservice.app</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="relative z-20 max-w-5xl mx-auto px-5 pb-20">
+    <div class="grid md:grid-cols-2 gap-5 md:gap-6 items-stretch">
+      <article class="logo-card group relative bg-ash border-l-4 border-lagoon border border-teal-400/20 p-7 md:p-9 flex flex-col overflow-hidden shadow-[0_0_48px_-12px_rgba(45,212,191,0.35)] backdrop-blur-sm">
+        <div class="absolute inset-0 bg-gradient-to-br from-lagoon/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+        <div class="flex justify-center mb-7 min-h-[130px] items-center relative">
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+            <div class="w-40 h-40 rounded-full border border-lagoon/30 animate-pulse"></div>
+          </div>
+          <img
+            class="logo-animate relative z-10 w-28 h-28 md:w-32 md:h-32 rounded-[22%] shadow-[0_0_30px_rgba(0,0,0,0.6)] ring-2 ring-white/10 object-contain bg-void/40 p-1"
+            src="images/dreamcycle-logo.svg"
+            alt="Dreamcycle — Jungle Canopy face"
+            width="128"
+            height="128"
+          />
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-bone tracking-wide">Dreamcycle</h2>
+        <p class="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-lagoon/90">Coming soon on the App Store</p>
+        <p class="mt-3 text-bone/70 leading-relaxed flex-grow text-base">
+          Split-flap clock and alarm — analog-inspired themes. iPhone, iPad, Apple Watch, Apple Vision Pro.
+        </p>
+        <p class="mt-2 text-xs text-bone/45">
+          <a href="https://dreamcycle.app/marketing/" class="text-lagoon/80 hover:text-lagoon underline-offset-2 hover:underline" rel="noopener noreferrer">dreamcycle.app</a>
+          — <a href="https://colormac.com/" class="text-lagoon/75 hover:text-lagoon underline-offset-2 hover:underline" rel="noopener noreferrer">legal &amp; privacy</a> (colormac.com for now) ·
+          <a href="https://dreamcycle.app/support/" class="text-lagoon/70 hover:text-lagoon underline-offset-2 hover:underline" rel="noopener noreferrer">support</a>
+        </p>
+        <span
+          class="mt-7 inline-flex items-center justify-center gap-2 border-2 border-bone/25 text-bone/45 px-6 py-3.5 font-semibold uppercase tracking-wider text-sm cursor-default select-none text-center leading-snug"
+          aria-disabled="true"
+        >
+          App Store — coming soon
+        </span>
+      </article>
+
+      <article class="logo-card group relative bg-ash border-l-4 border-sunset border border-rose-300/20 p-7 md:p-9 flex flex-col overflow-hidden hover:border-gold/50 backdrop-blur-sm transition-colors duration-300 shadow-[0_0_40px_-14px_rgba(251,113,133,0.25)]">
+        <div class="absolute inset-0 bg-gradient-to-br from-sunset/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+        <div class="flex justify-center mb-7 min-h-[130px] items-center relative">
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+            <div class="w-40 h-40 rounded-full border border-lola/25 animate-pulse"></div>
+          </div>
+          <img
+            class="logo-animate relative z-10 w-28 h-28 md:w-32 md:h-32 rounded-[22%] shadow-[0_0_30px_rgba(0,0,0,0.6)] ring-2 ring-lola/40 object-contain bg-void/40 p-1"
+            src="images/table-service-menu-ai-icon.svg"
+            alt="Table Service Menu AI app icon"
+            width="128"
+            height="128"
+            decoding="async"
+          />
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-bone tracking-wide leading-none">Table Service<br /><span class="text-lola">Menu AI</span></h2>
+        <p class="mt-3 text-bone/70 leading-relaxed flex-grow text-base">
+          Choose better options at the table: set dietary preferences, then scan any menu—QR code, photo, or pasted text—and get AI-powered dish suggestions, pairings, and answers in plain language. Calorie and carbs on every dish. Tune diet, allergies, cuisines, and how spicy you like it; ask the “AI Waiter” about the menu. Full access with a monthly subscription through the App Store (cancel anytime on your device).
+        </p>
+        <p class="mt-2 text-xs text-bone/50 leading-relaxed">
+          Table Service is an information tool only. Always confirm allergens and dietary needs with the restaurant and/or your doctor.
+        </p>
+        <p class="mt-2 text-xs text-bone/45">
+          <a href="https://tableservice.app" class="text-lola/85 hover:text-lola underline-offset-2 hover:underline" rel="noopener noreferrer">tableservice.app</a>
+          — product site
+        </p>
+        <p
+          class="mt-5 text-[0.7rem] sm:text-xs leading-relaxed text-bone/55 border border-[#E8C547]/25 rounded-lg px-3 py-3 bg-void/60"
+          role="note"
+        >
+          <strong class="text-bone/80 font-semibold">Availability.</strong>
+          Table Service Menu AI is offered on the App Store in select territories (about
+          <strong class="text-bone/70">131</strong> countries and regions). It is
+          <strong class="text-bone/80">not</strong> available for download in the
+          <strong class="text-bone/80">United States</strong>, the
+          <strong class="text-bone/80">United Kingdom</strong>,
+          <strong class="text-bone/80">mainland China</strong>,
+          <strong class="text-bone/80">Russia</strong>, or
+          <strong class="text-bone/80">Europe</strong> (including countries on Apple’s European storefronts). Apple controls regional listings; they may change without notice.
+        </p>
+        <a
+          class="mt-5 inline-flex items-center justify-center gap-2 border-2 border-lola text-lola px-6 py-3.5 font-semibold uppercase tracking-wider text-sm hover:bg-lola hover:text-void transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lola focus-visible:ring-offset-2 focus-visible:ring-offset-ash"
+          href="https://apps.apple.com/nz/app/table-service-menu-ai/id6759931792"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          App Store
+          <span aria-hidden="true">→</span>
+        </a>
+        <p class="mt-2 text-[0.65rem] text-bone/40">Listing opens in Apple’s New Zealand storefront; App Store may switch to your region if your account is eligible.</p>
+      </article>
+    </div>
+
+    <div class="mt-14 flex justify-center">
+      <a
+        href="mailto:contact@fantasyislandllc.com"
+        class="contact-btn inline-flex items-center justify-center border-2 border-bone text-bone px-10 py-4 font-bold uppercase tracking-[0.2em] text-sm hover:bg-lola hover:border-lola hover:text-void transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lola focus-visible:ring-offset-2 focus-visible:ring-offset-void opacity-0 translate-y-8"
+      >
+        Contact
+      </a>
+    </div>
+  </main>
+
+  <footer class="relative z-20 text-center pb-10 px-5 text-xs text-bone/40 uppercase tracking-widest">
+    © Fantasy Island LLC
+  </footer>
+
+  <!-- Tube guy: after content in DOM. GSAP must not animate groups that have static SVG translate() — it replaces the whole transform attribute. -->
+  <div class="tube-overlay" aria-hidden="true">
+    <svg viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+      <g id="tubeGuy" transform="translate(600,200) scale(1.25)">
+        <ellipse cx="0" cy="4" rx="20" ry="5" fill="#000" opacity="0.25" />
+        <rect x="-20" y="-2" width="40" height="14" rx="5" fill="#022c22" stroke="rgba(45,212,191,0.55)" stroke-width="1" />
+        <rect x="-16" y="0" width="32" height="8" rx="2" fill="#064e3b" opacity="0.9" />
+        <g transform="translate(0,8)">
+          <g id="tubeSway">
+            <path
+              fill="#FF4D6D"
+              stroke="#fda4af"
+              stroke-width="1.5"
+              d="M -18 0 Q -22 -28 -20 -52 Q -18 -72 -8 -82 Q 0 -86 8 -82 Q 18 -72 20 -52 Q 22 -28 18 0 Q 10 4 0 4 Q -10 4 -18 0 Z"
+            />
+            <ellipse cx="0" cy="-88" rx="15" ry="14" fill="#FF4D6D" stroke="#9f1239" stroke-width="1" />
+            <ellipse cx="-4" cy="-90" rx="3" ry="4" fill="#1e293b" opacity="0.65" />
+            <ellipse cx="5" cy="-90" rx="3" ry="4" fill="#1e293b" opacity="0.65" />
+            <path d="M -6 -78 Q 0 -72 6 -78" fill="none" stroke="#9f1239" stroke-width="1.5" stroke-linecap="round" />
+            <g transform="translate(-16,-38)">
+              <g id="tubeArmL">
+                <path
+                  d="M 0 0 Q -18 -22 -32 -48 Q -42 -68 -28 -88"
+                  fill="none"
+                  stroke="#FF4D6D"
+                  stroke-width="11"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M 0 0 Q -18 -22 -32 -48 Q -42 -68 -28 -88"
+                  fill="none"
+                  stroke="#fda4af"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  opacity="0.5"
+                />
+              </g>
+            </g>
+            <g transform="translate(16,-38)">
+              <g id="tubeArmR">
+                <path
+                  d="M 0 0 Q 18 -22 32 -48 Q 42 -68 28 -88"
+                  fill="none"
+                  stroke="#FF4D6D"
+                  stroke-width="11"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M 0 0 Q 18 -22 32 -48 Q 42 -68 28 -88"
+                  fill="none"
+                  stroke="#fda4af"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  opacity="0.5"
+                />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (typeof gsap === "undefined") return;
+
+      if (reduce) {
+        gsap.set([".hero-line span", ".hero-chunk", ".hero-tag", ".contact-btn", ".logo-animate"], {
+          clearProps: "all",
+          opacity: 1,
+          y: 0,
+          x: 0,
+        });
+        gsap.set("#title-bar", { maxWidth: "12rem" });
+        gsap.set("#speed-1, #speed-2, #speed-3", { scaleX: 1 });
+        return;
+      }
+
+      gsap.set(".logo-animate", { opacity: 0, x: -80, rotation: -4, scale: 0.85 });
+
+      var master = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      master.from("#speed-1", { scaleX: 0, duration: 0.35, ease: "power2.inOut" }, 0);
+      master.from("#speed-2", { scaleX: 0, duration: 0.28, ease: "power2.inOut" }, 0.08);
+      master.from("#speed-3", { scaleX: 0, duration: 0.32, ease: "power2.inOut" }, 0.15);
+
+      master.to(".hero-chunk", { opacity: 1, duration: 0.4 }, 0.1);
+
+      master.to('[data-line="1"]', { y: 0, opacity: 1, duration: 0.55, ease: "back.out(1.35)" }, 0.2);
+      master.to('[data-line="2"]', { y: 0, opacity: 1, duration: 0.55, ease: "back.out(1.35)" }, 0.32);
+
+      master.to("#title-bar", { maxWidth: "min(28rem, 85vw)", duration: 0.7, ease: "power3.inOut" }, 0.45);
+
+      master.to(".hero-tag", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.65);
+
+      master.to(".logo-animate", {
+        opacity: 1,
+        x: 0,
+        rotation: 0,
+        scale: 1,
+        duration: 0.65,
+        stagger: 0.12,
+        ease: "back.out(1.2)",
+      }, 0.5);
+
+      master.to(".contact-btn", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.95);
+
+      gsap.to("#glow-pulse", {
+        opacity: 0.55,
+        duration: 0.85,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.utils.toArray(".logo-card").forEach(function (card) {
+        var target = card.querySelector(".logo-animate");
+        if (!target) return;
+        card.addEventListener("mouseenter", function () {
+          gsap.to(target, { scale: 1.06, duration: 0.35, ease: "power2.out" });
+        });
+        card.addEventListener("mouseleave", function () {
+          gsap.to(target, { scale: 1, duration: 0.5, ease: "power3.out" });
+        });
+      });
+
+      // Tube: rotate only inner <g> ids — parents keep static translate() (GSAP replaces whole transform on target).
+      gsap.set("#tubeSway", { transformOrigin: "0px 4px" });
+      gsap.set("#tubeArmL", { transformOrigin: "0px 0px" });
+      gsap.set("#tubeArmR", { transformOrigin: "0px 0px" });
+
+      gsap.to("#tubeSway", {
+        rotation: 11,
+        duration: 0.52,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("#tubeArmL", {
+        rotation: -52,
+        duration: 0.26,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("#tubeArmR", {
+        rotation: 52,
+        duration: 0.3,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+        delay: 0.12,
+      });
+    })();
+  </script>
+</body>
+</html>

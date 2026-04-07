@@ -1,0 +1,41 @@
+# Deploy /site to Cloudflare Pages (project: fantasy-island-llc).
+#
+# Repo secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — Account → Cloudflare Pages → Edit
+#   CLOUDFLARE_ACCOUNT_ID  — 32-char account id from dashboard
+#
+# Create project "fantasy-island-llc" in Cloudflare Pages (or rename below).
+# Attach custom domain fantasyislandllc.com to that project.
+
+name: Deploy site to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy-cloudflare-pages.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity check site
+        run: |
+          test -f site/index.html || { echo "::error::site/index.html missing"; exit 1; }
+          grep -q 'Fantasy Island LLC' site/index.html || { echo "::error::title/brand check failed"; exit 1; }
+          echo "OK: site/ present."
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=fantasy-island-llc --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
